@@ -71,12 +71,14 @@ createBoard();
 
 function checkMatch(){
     const cards = document.querySelectorAll('img');
-    const optionOneId=cardsChosenIds[0];
-    const optionTwoId=cardsChosenIds[1];
+    let optionOneId=cardsChosenIds[0];
+    let optionTwoId=cardsChosenIds[1];
     if(optionOneId==optionTwoId){
+        cards[optionOneId].setAttribute('src', 'images/white.jpg');
+        optionOneId = ""; 
+        optionTwoId = "";
         cardsChosen =[];
         cardsChosenIds =[];
-        cards[optionOneId].setAttribute('src', 'images/white.jpg');
     }
     if(cardsChosen[0]===cardsChosen[1]){
         cards[optionOneId].removeEventListener('click', flipcard);
@@ -101,7 +103,7 @@ function flipcard(){
     cardsChosenIds.push(card_id);
     this.setAttribute('src', cardArray[card_id].img);
     if(cardsChosen.length ===2){
-        setTimeout(checkMatch, 500);
+        setTimeout(checkMatch, 400);
     }
 }
 
